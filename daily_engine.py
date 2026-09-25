@@ -469,27 +469,27 @@ def generate_jayed_post_copy(repo: Dict[str, Any], insights: Dict[str, Any]) -> 
         "",
         "Here is what makes this architecture brilliant:",
         "",
-        "The Bottleneck:",
+        "**The Bottleneck:**",
         desc,
         "",
-        "The Core Innovation:",
+        "**The Core Innovation:**",
         core_innov,
         "",
-        "How It Works Under the Hood:",
+        "**How It Works Under the Hood:**",
         f"→ Layer 1: {layer1}",
         f"→ Layer 2: {layer2}",
         f"→ Layer 3: {layer3}",
         "",
-        "The Benchmark:",
+        "**The Benchmark:**",
         f"• Throughput / Latency: {latency_val}",
         f"• Resource Footprint: {mem_val}",
         f"• Setup Overhead: {setup_val}",
         "",
-        "The Reality Check:",
+        "**The Reality Check:**",
         f"✅ Best for: {best_for}",
         f"❌ Skip if: {skip_if}",
         "",
-        "The Rule:",
+        "**The Rule:**",
         rule,
         "",
         "No gatekeeping. Repo link + 3-step local setup in the 1st comment below.",
@@ -524,34 +524,65 @@ def generate_jayed_post_copy(repo: Dict[str, Any], insights: Dict[str, Any]) -> 
 # 4. Telegram Card Builder
 # ==============================================================================
 
+def build_daily_briefing_card(repo: Dict[str, Any], hook: str) -> str:
+    """
+    Message 1 (Briefing Card): Executive overview with borders, star stats,
+    language, clickable repo link, and hook blockquote. Metadata only.
+    """
+    repo_name = escape_html_chars(repo["name"].upper())
+    repo_id = escape_html_chars(repo["repo_id"])
+    total_stars = escape_html_chars(str(repo.get("total_stars") or "N/A"))
+    stars_today = escape_html_chars(str(repo.get("stars_today") or ""))
+    language = escape_html_chars(str(repo.get("language") or "AI / Open Source"))
+    url = f"https://github.com/{repo['owner']}/{repo['name']}"
+    border = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+    stars_line = f"⭐ <b>Stars:</b> {total_stars}"
+    if stars_today:
+        stars_line += f" (<i>{stars_today}</i>)"
+
+    parts = [
+        f"🐙 <b>TRENDING GITHUB AI: {repo_name}</b> • <code>LINKEDIN / X</code>",
+        f"<code>{border}</code>",
+        stars_line,
+        f"🛠️ <b>Language:</b> <code>{language}</code>",
+        f"🔗 <b>Repository:</b> <a href=\"{url}\">{repo_id}</a>",
+        "",
+        f"<blockquote>⚡ <b>Hook:</b> <i>{escape_html_chars(hook)}</i></blockquote>",
+        f"<code>{border}</code>",
+        "📋 <b>Next 2 messages are ready for 1-click copy:</b>",
+        "  1️⃣ <b>Main Post Copy</b> (Clean bold formatting, ready to publish)",
+        "  2️⃣ <b>1st Comment Copy</b> (Setup instructions & direct repo link)"
+    ]
+    return "\n".join(parts)
+
+
+def build_daily_post_message(post_markdown: str) -> str:
+    """
+    Message 2 (Pure Post): 100% clean, human-readable post with bold <b>
+    visual landmark headers. NO <pre> wrapping so it copies cleanly on mobile/desktop.
+    """
+    return markdown_to_telegram_html(post_markdown)
+
+
+def build_daily_comment_message(comment_markdown: str) -> str:
+    """
+    Message 3 (1st Comment): Standalone comment message with direct repo link
+    and 3-step setup guide, ready to paste directly into comments.
+    """
+    converted = markdown_to_telegram_html(comment_markdown)
+    header = "💬 <b>1ST-COMMENT / AUTO-REPLY:</b>\n\n"
+    return header + converted
+
+
 def build_daily_telegram_card(
     repo: Dict[str, Any],
     post_markdown: str,
     comment_markdown: str,
     hook: str
 ) -> str:
-    """
-    Assembles the upgraded Telegram card format:
-      - Header banner with emojis & platform badge
-      - Unicode border divider: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      - Hook blockquote: <blockquote>⚡ Hook: ...</blockquote>
-      - 1-Click Copyable Post Block: <pre>...</pre>
-      - 1-Click Copyable 1st-Comment Block: <pre>...</pre>
-      - Callout blockquote and status footer
-    """
-    repo_name = repo["name"].upper()
-    title = f"TRENDING GITHUB AI: {repo_name}"
-    platform = "LINKEDIN / X"
-
-    card = build_message_card(
-        content=post_markdown,
-        title=title,
-        platform=platform,
-        hook=hook,
-        comment_content=comment_markdown,
-        footer_note="Tap either pre-formatted block above to copy the clean text directly to clipboard."
-    )
-    return card
+    """Legacy single-message card fallback."""
+    return f"{build_daily_briefing_card(repo, hook)}\n\n{build_daily_post_message(post_markdown)}\n\n{build_daily_comment_message(comment_markdown)}"
 
 
 # ==============================================================================
@@ -564,8 +595,8 @@ def run_daily_engine(dry_run: bool = False, limit: int = 1, force: bool = False)
       1. Discover trending repositories
       2. Filter & deduplicate against posted_ids.json
       3. Extract context & generate Jayed voice post copy
-      4. Assemble upgraded Telegram card
-      5. Dispatch to Telegram (or preview in dry-run mode)
+      4. Assemble 3 clean, distinct Telegram messages
+      5. Dispatch sequentially to Telegram (or preview in dry-run mode)
       6. Update posted_ids.json
     """
     print("═" * 65)
@@ -613,19 +644,22 @@ def run_daily_engine(dry_run: bool = False, limit: int = 1, force: bool = False)
         print("[*] Synthesizing Jayed voice post copy (Nick/Roy/Nate/Jack blend)...")
         post_copy, comment_copy, hook = generate_jayed_post_copy(repo, insights)
 
-        # Assemble upgraded Telegram card
-        print("[*] Assembling upgraded Telegram card with 1-click copy blocks...")
-        telegram_card = build_daily_telegram_card(repo, post_copy, comment_copy, hook)
+        # Assemble 3-part clean Telegram dispatch
+        print("[*] Assembling 3-part clean Telegram dispatch...")
+        briefing_msg = build_daily_briefing_card(repo, hook)
+        post_msg = build_daily_post_message(post_copy)
+        comment_msg = build_daily_comment_message(comment_copy)
 
         if dry_run:
             print("\n" + "═" * 65)
-            print("  [DRY RUN PREVIEW] TELEGRAM CARD OUTPUT:")
+            print("  [DRY RUN PREVIEW] 3-PART TELEGRAM DISPATCH:")
             print("═" * 65)
-            chunks = split_html_message(telegram_card, max_len=4000)
-            print(f"Message Chunks: {len(chunks)} (Total characters: {len(telegram_card)})")
-            for i, chunk in enumerate(chunks, 1):
-                print(f"\n--- CHUNK {i}/{len(chunks)} ({len(chunk)} chars) ---")
-                print(chunk)
+            print("\n--- [MESSAGE 1/3] EXECUTIVE BRIEFING CARD ---")
+            print(briefing_msg)
+            print("\n--- [MESSAGE 2/3] PURE POST COPY (CLEAN READABLE / COPYABLE) ---")
+            print(post_msg)
+            print("\n--- [MESSAGE 3/3] 1ST COMMENT / AUTO-REPLY ---")
+            print(comment_msg)
             print("\n" + "═" * 65)
             print(f"[✓] Candidate '{repo['repo_id']}' dry run complete. Verified zero syntax errors.")
         else:
@@ -635,9 +669,23 @@ def run_daily_engine(dry_run: bool = False, limit: int = 1, force: bool = False)
                 sys.exit(1)
 
             dispatcher = TelegramDispatcher(token, channel)
-            print(f"[*] Dispatching card to Telegram channel: {channel}...")
-            dispatcher.send_text(telegram_card, disable_preview=True)
-            print(f"[✓] Successfully dispatched {repo['repo_id']} to Telegram!")
+            print(f"[*] Dispatching 3-part package to Telegram channel: {channel}...")
+
+            # Send Message 1: Executive Briefing Card
+            print("  [1/3] Sending Executive Briefing Card...")
+            dispatcher.send_text(briefing_msg, disable_preview=True)
+            time.sleep(1)
+
+            # Send Message 2: Pure Post Copy (clean formatting, easy 1-click copy)
+            print("  [2/3] Sending Pure Post Copy (clean formatting, easy 1-click copy)...")
+            dispatcher.send_text(post_msg, disable_preview=True)
+            time.sleep(1)
+
+            # Send Message 3: 1st Comment / Auto-Reply
+            print("  [3/3] Sending 1st-Comment / Auto-Reply...")
+            dispatcher.send_text(comment_msg, disable_preview=True)
+
+            print(f"[✓] Successfully dispatched 3-part package for {repo['repo_id']} to Telegram!")
 
             # Record state
             save_posted_id(repo["repo_id"])

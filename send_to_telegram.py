@@ -186,6 +186,10 @@ def markdown_to_telegram_html(md_text: str) -> str:
     # Escape raw '&' not part of existing HTML entities
     text = re.sub(r'&(?!(?:amp|lt|gt|quot|apos);)', '&amp;', text)
 
+    # Escape raw '<' that is not part of a valid Telegram HTML tag
+    valid_tags = r'(?:/?(?:b|strong|i|em|u|ins|s|strike|del|span|tg-spoiler|a|code|pre|blockquote|tg-emoji)\b)'
+    text = re.sub(rf'<(?!(?:{valid_tags}))', '&lt;', text, flags=re.IGNORECASE)
+
     # Convert Markdown headers (# Title -> <b>Title</b>)
     text = re.sub(r'^#{1,6}\s+(.+)$', r'<b>\1</b>', text, flags=re.MULTILINE)
 
