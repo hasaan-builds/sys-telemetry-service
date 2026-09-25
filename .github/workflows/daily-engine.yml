@@ -1,0 +1,57 @@
+name: Daily AI Content Engine
+
+on:
+  schedule:
+    # Runs daily at 12:00 PM UTC (6:00 PM BST)
+    - cron: '0 12 * * *'
+  # Enables 1-click manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-engine:
+    name: Scrape, Generate & Dispatch Daily AI Content
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Run Daily Content Engine
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHANNEL: ${{ secrets.CHANNEL }}
+        run: |
+          python daily_engine.py
+
+      - name: Commit State & Reset 60-Day Inactivity Timer
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add posted_ids.json
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(engine): update posted_ids.json [skip ci]"
+            git push origin HEAD:main
+          else
+            date -u +"%Y-%m-%dT%H:%M:%SZ" > .last_heartbeat
+            git add .last_heartbeat
+            git commit -m "chore(engine): heartbeat ping [skip ci]"
+            git push origin HEAD:main
+          fi
