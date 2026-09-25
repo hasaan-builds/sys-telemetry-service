@@ -1,0 +1,37 @@
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Operating system artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Playwright & browser artifacts
+playwright-report/
+test-results/
+.playwright/
+
+# Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
