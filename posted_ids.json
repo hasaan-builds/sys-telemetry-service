@@ -2,5 +2,6 @@
   "alirezarezvani/claude-skills",
   "strands-agents/harness-sdk",
   "zhaoxuya520/reverse-skill",
-  "NVIDIA/Model-Optimizer"
+  "nvidia/model-optimizer",
+  "0x4m4/hexstrike-ai"
 ]
