@@ -3,5 +3,6 @@
   "strands-agents/harness-sdk",
   "zhaoxuya520/reverse-skill",
   "nvidia/model-optimizer",
-  "0x4m4/hexstrike-ai"
+  "0x4m4/hexstrike-ai",
+  "mem0ai/mem0"
 ]
