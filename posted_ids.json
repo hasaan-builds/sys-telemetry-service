@@ -5,5 +5,6 @@
   "nvidia/model-optimizer",
   "0x4m4/hexstrike-ai",
   "mem0ai/mem0",
-  "ifixai-ai/iFixAi"
+  "ifixai-ai/ifixai",
+  "mksglu/context-mode"
 ]
