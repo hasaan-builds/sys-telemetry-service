@@ -6,5 +6,6 @@
   "0x4m4/hexstrike-ai",
   "mem0ai/mem0",
   "ifixai-ai/ifixai",
-  "mksglu/context-mode"
+  "mksglu/context-mode",
+  "colbymchenry/codegraph"
 ]
