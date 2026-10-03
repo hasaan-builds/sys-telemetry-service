@@ -7,5 +7,6 @@
   "mem0ai/mem0",
   "ifixai-ai/ifixai",
   "mksglu/context-mode",
-  "colbymchenry/codegraph"
+  "colbymchenry/codegraph",
+  "thedotmack/claude-mem"
 ]
