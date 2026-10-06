@@ -9,5 +9,6 @@
   "mksglu/context-mode",
   "colbymchenry/codegraph",
   "thedotmack/claude-mem",
-  "Panniantong/Agent-Reach"
+  "panniantong/agent-reach",
+  "topoteretes/cognee"
 ]
