@@ -10,5 +10,6 @@
   "colbymchenry/codegraph",
   "thedotmack/claude-mem",
   "panniantong/agent-reach",
-  "topoteretes/cognee"
+  "topoteretes/cognee",
+  "vllm-project/vllm"
 ]
