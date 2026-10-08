@@ -11,5 +11,6 @@
   "thedotmack/claude-mem",
   "panniantong/agent-reach",
   "topoteretes/cognee",
-  "vllm-project/vllm"
+  "vllm-project/vllm",
+  "microsoft/agent-framework"
 ]
