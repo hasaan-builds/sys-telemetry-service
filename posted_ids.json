@@ -12,5 +12,6 @@
   "panniantong/agent-reach",
   "topoteretes/cognee",
   "vllm-project/vllm",
-  "microsoft/agent-framework"
+  "microsoft/agent-framework",
+  "K-Dense-AI/scientific-agent-skills"
 ]
