@@ -13,5 +13,6 @@
   "topoteretes/cognee",
   "vllm-project/vllm",
   "microsoft/agent-framework",
-  "K-Dense-AI/scientific-agent-skills"
+  "k-dense-ai/scientific-agent-skills",
+  "huggingface/transformers"
 ]
