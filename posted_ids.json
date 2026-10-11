@@ -14,5 +14,6 @@
   "vllm-project/vllm",
   "microsoft/agent-framework",
   "k-dense-ai/scientific-agent-skills",
-  "huggingface/transformers"
+  "huggingface/transformers",
+  "Shubhamsaboo/awesome-llm-apps"
 ]
