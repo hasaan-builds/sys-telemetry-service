@@ -15,5 +15,6 @@
   "microsoft/agent-framework",
   "k-dense-ai/scientific-agent-skills",
   "huggingface/transformers",
-  "Shubhamsaboo/awesome-llm-apps"
+  "shubhamsaboo/awesome-llm-apps",
+  "Alishahryar1/free-claude-code"
 ]
