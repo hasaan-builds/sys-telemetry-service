@@ -17,5 +17,6 @@
   "huggingface/transformers",
   "shubhamsaboo/awesome-llm-apps",
   "alishahryar1/free-claude-code",
-  "ComposioHQ/awesome-claude-skills"
+  "composiohq/awesome-claude-skills",
+  "isair/jarvis"
 ]
