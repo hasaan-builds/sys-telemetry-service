@@ -23,5 +23,6 @@
   "xerj-org/xerj",
   "akitaonrails/ai-memory",
   "madslorentzen/ai-job-search",
-  "headroomlabs-ai/headroom"
+  "headroomlabs-ai/headroom",
+  "google/artemis"
 ]
