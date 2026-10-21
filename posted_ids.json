@@ -24,5 +24,6 @@
   "akitaonrails/ai-memory",
   "madslorentzen/ai-job-search",
   "headroomlabs-ai/headroom",
-  "google/artemis"
+  "google/artemis",
+  "wshobson/agents"
 ]
