@@ -25,5 +25,6 @@
   "madslorentzen/ai-job-search",
   "headroomlabs-ai/headroom",
   "google/artemis",
-  "wshobson/agents"
+  "wshobson/agents",
+  "fastapi/fastapi"
 ]
