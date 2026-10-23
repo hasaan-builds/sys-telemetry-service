@@ -26,5 +26,6 @@
   "headroomlabs-ai/headroom",
   "google/artemis",
   "wshobson/agents",
-  "fastapi/fastapi"
+  "fastapi/fastapi",
+  "SnailSploit/Claude-Red"
 ]
