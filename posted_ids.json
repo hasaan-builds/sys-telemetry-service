@@ -27,5 +27,6 @@
   "google/artemis",
   "wshobson/agents",
   "fastapi/fastapi",
-  "SnailSploit/Claude-Red"
+  "snailsploit/claude-red",
+  "crewAIInc/crewAI"
 ]
