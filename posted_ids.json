@@ -28,5 +28,6 @@
   "wshobson/agents",
   "fastapi/fastapi",
   "snailsploit/claude-red",
-  "crewAIInc/crewAI"
+  "crewaiinc/crewai",
+  "AstrBotDevs/AstrBot"
 ]
