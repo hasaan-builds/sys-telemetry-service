@@ -29,5 +29,6 @@
   "fastapi/fastapi",
   "snailsploit/claude-red",
   "crewaiinc/crewai",
-  "AstrBotDevs/AstrBot"
+  "astrbotdevs/astrbot",
+  "eugeniughelbur/obsidian-second-brain"
 ]
