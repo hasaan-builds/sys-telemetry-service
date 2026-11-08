@@ -42,5 +42,6 @@
   "scenario-labs/skills",
   "google-gemini/gemini-skills",
   "pipeshub-ai/pipeshub-ai",
-  "aws/agent-toolkit-for-aws"
+  "aws/agent-toolkit-for-aws",
+  "NVIDIA/auto-ontology"
 ]
