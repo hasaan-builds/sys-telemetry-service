@@ -43,5 +43,6 @@
   "google-gemini/gemini-skills",
   "pipeshub-ai/pipeshub-ai",
   "aws/agent-toolkit-for-aws",
-  "NVIDIA/auto-ontology"
+  "nvidia/auto-ontology",
+  "homeassistant-ai/ha-mcp"
 ]
