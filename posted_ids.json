@@ -46,5 +46,6 @@
   "nvidia/auto-ontology",
   "homeassistant-ai/ha-mcp",
   "ashishpatel26/500-ai-agents-projects",
-  "vercel-labs/agent-browser"
+  "vercel-labs/agent-browser",
+  "NVIDIA/SkillEvaluator"
 ]
