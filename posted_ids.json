@@ -49,5 +49,6 @@
   "vercel-labs/agent-browser",
   "nvidia/skillevaluator",
   "asgeirtj/system_prompts_leaks",
-  "mukul975/Anthropic-Cybersecurity-Skills"
+  "mukul975/anthropic-cybersecurity-skills",
+  "google-labs-code/stitch-skills"
 ]
