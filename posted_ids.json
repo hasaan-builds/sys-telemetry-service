@@ -53,5 +53,6 @@
   "google-labs-code/stitch-skills",
   "vstorm-co/agenticos",
   "dograh-hq/dograh",
-  "Dodaios/Dodaios"
+  "dodaios/dodaios",
+  "awslabs/cli-agent-orchestrator"
 ]
