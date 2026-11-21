@@ -55,5 +55,6 @@
   "dograh-hq/dograh",
   "dodaios/dodaios",
   "awslabs/cli-agent-orchestrator",
-  "dream-num/univer"
+  "dream-num/univer",
+  "SWE-agent/mini-swe-agent"
 ]
