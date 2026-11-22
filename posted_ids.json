@@ -56,5 +56,6 @@
   "dodaios/dodaios",
   "awslabs/cli-agent-orchestrator",
   "dream-num/univer",
-  "SWE-agent/mini-swe-agent"
+  "swe-agent/mini-swe-agent",
+  "ChromeDevTools/chrome-devtools-mcp"
 ]
