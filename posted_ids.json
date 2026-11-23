@@ -57,5 +57,6 @@
   "awslabs/cli-agent-orchestrator",
   "dream-num/univer",
   "swe-agent/mini-swe-agent",
-  "ChromeDevTools/chrome-devtools-mcp"
+  "chromedevtools/chrome-devtools-mcp",
+  "mjmirza/app-store-compliance"
 ]
