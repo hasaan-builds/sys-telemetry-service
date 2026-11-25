@@ -59,5 +59,6 @@
   "swe-agent/mini-swe-agent",
   "chromedevtools/chrome-devtools-mcp",
   "mjmirza/app-store-compliance",
-  "kajisho5/ffmpeg-skill"
+  "kajisho5/ffmpeg-skill",
+  "vllm-project/vllm-ascend"
 ]
