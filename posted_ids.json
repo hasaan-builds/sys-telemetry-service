@@ -60,5 +60,6 @@
   "chromedevtools/chrome-devtools-mcp",
   "mjmirza/app-store-compliance",
   "kajisho5/ffmpeg-skill",
-  "vllm-project/vllm-ascend"
+  "vllm-project/vllm-ascend",
+  "zhouxiaoka/autoclip"
 ]
