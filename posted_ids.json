@@ -62,5 +62,6 @@
   "kajisho5/ffmpeg-skill",
   "vllm-project/vllm-ascend",
   "zhouxiaoka/autoclip",
-  "alibaba/open-code-review"
+  "alibaba/open-code-review",
+  "google-research/paper-orchestra"
 ]
